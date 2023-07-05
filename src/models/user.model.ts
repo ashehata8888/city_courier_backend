@@ -17,14 +17,14 @@ const hashPass = (pass: string) => {
 
 class usersModel {
   // create new users
-async createusers(b:users): Promise<users> {
+async createUser(u:users): Promise<users> {
     try {
       const conn = await db.connect()
 const sql = `INSERT INTO users(user_name,password,address,user_mail,privilege,status) VALUES (
 $$1,$2,$3,$4,$5,$6) RETURNING *`
 
       const result = await conn.query(sql,
-        [b.user_name,b.password,b.address,b.user_mail,b.privilege,b.status])
+        [u.user_name,hashPass(u.password),u.address,u.user_mail,u.privilege,u.status])
 
       conn.release()
 
@@ -34,7 +34,7 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
     }
   }
   // get one users by id
-  async getOneusers(id: string): Promise<users> {
+  async getOneUser(id: string): Promise<users> {
     try {
       const conn = await db.connect()
       const sql = `SELECT * from users WHERE id=($1)`
@@ -48,7 +48,7 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
 
   // get all userss
 
-  async getAlluserss(): Promise<users[]> {
+  async getAllUsers(): Promise<users[]> {
     try {
       const conn = await db.connect()
       const sql = `SELECT * from users`
@@ -61,11 +61,11 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
   }
 
   // udate one users by id
-  async updateusers(b: users): Promise<users> {
+  async updateUser(u: users): Promise<users> {
     try {
       const conn = await db.connect()
   const sql = `UPDATE users SET user_name=$1,password=$2,address=$3,user_mail=$4,privilege=$5,status=$6 WHERE id=$7 RETURNING *`
-      const result = await conn.query(sql, [b.user_name,b.password,b.address,b.user_mail,b.privilege,b.status,b.id])
+      const result = await conn.query(sql, [u.user_name,u.password,u.address,u.user_mail,u.privilege,u.status,u.id])
       conn.release()
       return result.rows[0]
     } catch (err) {
@@ -74,7 +74,7 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
   }
   // delete one users by id
 
-  async deleteusers(id: string): Promise<users> {
+  async deleteUser(id: string): Promise<users> {
     try {
       const conn = await db.connect()
       const sql = `DELETE FROM users WHERE id=($1) RETURNING *`
