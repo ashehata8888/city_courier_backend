@@ -22,9 +22,9 @@ async createUser(u:users): Promise<users> {
       const conn = await db.connect()
 const sql = `INSERT INTO users(user_name,password,address,user_mail,privilege,status) VALUES (
 $$1,$2,$3,$4,$5,$6) RETURNING *`
-
+// String(hashPass(u.password))
       const result = await conn.query(sql,
-        [u.user_name,hashPass(u.password),u.address,u.user_mail,u.privilege,u.status])
+        [u.user_name,String(u.password),u.address,u.user_mail,u.privilege,u.status])
 
       conn.release()
 
@@ -85,9 +85,6 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
       throw new Error(`Unable to Delete this users Error : ${(err as Error).message}`)
     }
   }
-
-
-
 
 
   // Auth user
