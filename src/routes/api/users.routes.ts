@@ -5,9 +5,9 @@ import authMiddleware from '../../middleware/authMiddle'
 const routes = Router()
 
 routes.post('/', act.createUser)
-routes.get('/', act.getAllUsers)
+routes.get('/',authMiddleware, act.getAllUsers)
 routes.get('/:id', authMiddleware, act.getOneUser)
-routes.patch('/:id', act.updateUser)
+routes.patch('/:id', authMiddleware,act.updateUser)
 routes.delete('/:id', authMiddleware, act.deleteUser)
 routes.post('/authenticate', act.authenticate)
 

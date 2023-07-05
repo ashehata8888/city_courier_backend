@@ -20,11 +20,10 @@ class usersModel {
 async createUser(u:users): Promise<users> {
     try {
       const conn = await db.connect()
-const sql = `INSERT INTO users(user_name,password,address,user_mail,privilege,status) VALUES (
-$$1,$2,$3,$4,$5,$6) RETURNING *`
+const sql = `INSERT INTO users(user_name,password,address,user_mail,privilege,status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *`
 // String(hashPass(u.password))
       const result = await conn.query(sql,
-        [u.user_name,String(u.password),u.address,u.user_mail,u.privilege,u.status])
+        [u.user_name,hashPass(u.password),u.address,u.user_mail,u.privilege,u.status])
 
       conn.release()
 
@@ -65,7 +64,7 @@ $$1,$2,$3,$4,$5,$6) RETURNING *`
     try {
       const conn = await db.connect()
   const sql = `UPDATE users SET user_name=$1,password=$2,address=$3,user_mail=$4,privilege=$5,status=$6 WHERE id=$7 RETURNING *`
-      const result = await conn.query(sql, [u.user_name,u.password,u.address,u.user_mail,u.privilege,u.status,u.id])
+      const result = await conn.query(sql, [u.user_name,hashPass(u.password),u.address,u.user_mail,u.privilege,u.status,u.id])
       conn.release()
       return result.rows[0]
     } catch (err) {
