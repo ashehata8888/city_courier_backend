@@ -8,6 +8,7 @@ routes.post('/', act.createUser)
 routes.get('/',authMiddleware, act.getAllUsers)
 routes.get('/:id', authMiddleware, act.getOneUser)
 routes.patch('/:id', authMiddleware,act.updateUser)
+routes.patch('/pass/:id', authMiddleware,act.updateUserPass)
 routes.delete('/:id', authMiddleware, act.deleteUser)
 routes.post('/authenticate', act.authenticate)
 

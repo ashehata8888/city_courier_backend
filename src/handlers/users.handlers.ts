@@ -45,6 +45,20 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
   }
 }
 
+
+export const updateUserPass = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // const paramId = req.params.id as unknown as User
+    const user = await userModel.updateUserPass(req.body)
+    res.json({
+      Message: ` the User Name "${user.user_name}" was updated successfully`,
+      data: { ...user }
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // const paramId = req.params.id as unknown as User

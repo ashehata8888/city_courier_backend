@@ -74,6 +74,22 @@ const sql = `INSERT INTO users(user_name,password,address,user_mail,privilege,st
       throw new Error(`Unable to update this users Error : ${(err as Error).message}`)
     }
   }
+
+ // udate password for one user by id
+ async updateUserPass(u: User): Promise<User> {
+  try {
+    const conn = await db.connect()
+    const sql = `UPDATE users SET 
+    password=$1 WHERE id=$2 RETURNING *`
+    const result = await conn.query(sql, [hashPass(u.password),u.id])
+    conn.release()
+    return result.rows[0]
+  } catch (err) {
+    throw new Error(`Unable to update this user Password Error : ${(err as Error).message}`)
+  }
+}
+
+
   // delete one users by id
 
   async deleteUser(id: string): Promise<users> {
