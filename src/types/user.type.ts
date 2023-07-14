@@ -1,5 +1,5 @@
 type User = {
-    id: number,
+    id?: number,
     user_name: string,
     password: string,
     address: string,

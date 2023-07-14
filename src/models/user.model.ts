@@ -16,6 +16,9 @@ const hashPass = (pass: string) => {
 
 
 class usersModel {
+  static createUser(u: { user_name: string; password: string; address: string; user_mail: string; privilege: string; status: string }) {
+    throw new Error("Method not implemented.")
+  }
   // create new users
 async createUser(u:users): Promise<users> {
     try {
