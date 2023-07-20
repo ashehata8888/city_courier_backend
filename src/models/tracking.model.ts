@@ -80,27 +80,25 @@ $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *`
  async updatePicked_up_time(t: tracking): Promise<tracking> {
     try {
       const conn = await db.connect()
-      const sql = `UPDATE tracking SET 
-      picked_up_time =$1 WHERE id=$2 RETURNING *`
-      const result = await conn.query(sql, [t.picked_up_time,t.id])
+      const sql = `UPDATE tracking SET picked_up_time =$1,parcel_status=$2,action_by=$3  WHERE id=$4 RETURNING *`
+      const result = await conn.query(sql, [t.picked_up_time,t.parcel_status,t.action_by,t.id])
       conn.release()
       return result.rows[0]
     } catch (err) {
-      throw new Error(`Unable to update this picked_up_time  Error : ${(err as Error).message}`)
+      throw new Error(`Unable to update this picked_up_time ,parcel status and action by Error : ${(err as Error).message}`)
     }
   }
 
-   // udate picked date and time for one track by id
+   // udate Delivery date and time for one track by id
    async updateDelivery_time (t: tracking): Promise<tracking> {
     try {
       const conn = await db.connect()
-      const sql = `UPDATE tracking SET 
-      delivery_time =$1 WHERE id=$2 RETURNING *`
-      const result = await conn.query(sql, [t.delivery_time,t.id])
+      const sql = `UPDATE tracking SET delivery_time=$1,parcel_status=$2,action_by=$3 WHERE id=$4 RETURNING *`
+      const result = await conn.query(sql, [t.delivery_time,t.parcel_status,t.action_by,t.id])
       conn.release()
       return result.rows[0]
     } catch (err) {
-      throw new Error(`Unable to update this delivery_time Error : ${(err as Error).message}`)
+      throw new Error(`Unable to update this delivery_time ,parcel status and action by Error : ${(err as Error).message}`)
     }
   }
 

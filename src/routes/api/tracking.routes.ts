@@ -9,7 +9,7 @@ routes.get('/',authMiddleware, act.getAllTrackings)
 routes.get('/:id',authMiddleware, act.getAllTrackingForOneUser)
 routes.get('/:id', authMiddleware, act.getOneTracking)
 routes.patch('/:id', authMiddleware,act.updateTracking)
-routes.patch('/picked/:id', authMiddleware,act.updateTrackingPickedTime)
+routes.patch('/pickedup/:id', authMiddleware,act.updateTrackingPickedTime)
 routes.patch('/delivery/:id', authMiddleware,act.updateTrackingDeliveryTime)
 routes.delete('/:id', authMiddleware, act.deleteTracking)
 
