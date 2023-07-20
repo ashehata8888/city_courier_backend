@@ -13,6 +13,7 @@ type User = {
     action_by:string,
     picked_up_time: string,
     delivery_time: string,
+    user_id:number
   }
   export default User
 

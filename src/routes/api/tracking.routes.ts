@@ -6,6 +6,7 @@ const routes = Router()
 
 routes.post('/',authMiddleware, act.createTracking)
 routes.get('/',authMiddleware, act.getAllTrackings)
+routes.get('/:id',authMiddleware, act.getAllTrackingForOneUser)
 routes.get('/:id', authMiddleware, act.getOneTracking)
 routes.patch('/:id', authMiddleware,act.updateTracking)
 routes.delete('/:id', authMiddleware, act.deleteTracking)

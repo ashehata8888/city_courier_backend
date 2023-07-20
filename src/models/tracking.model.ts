@@ -6,11 +6,11 @@ class trackingModel {
 async createTracking(t:tracking): Promise<tracking> {
     try {
       const conn = await db.connect()
-const sql = `INSERT INTO tracking(sender_name,sender_phone,sender_adress,receiver_name,receiver_phone,receiver_adress,parcel_qt,parcel_content,parcel_wight,parcel_status,action_by,picked_up_time,delivery_time) VALUES (
-$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *`
+const sql = `INSERT INTO tracking(sender_name,sender_phone,sender_adress,receiver_name,receiver_phone,receiver_adress,parcel_qt,parcel_content,parcel_wight,parcel_status,action_by,picked_up_time,delivery_time,user_id) VALUES (
+$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *`
 
       const result = await conn.query(sql,
-        [t.sender_name,t.sender_phone,t.sender_adress,t.receiver_name,t.receiver_phone,t.receiver_adress,t.parcel_qt,t.parcel_content,t.parcel_wight,t.parcel_status,t.action_by,t.picked_up_time,t.delivery_time])
+        [t.sender_name,t.sender_phone,t.sender_adress,t.receiver_name,t.receiver_phone,t.receiver_adress,t.parcel_qt,t.parcel_content,t.parcel_wight,t.parcel_status,t.action_by,t.picked_up_time,t.delivery_time,t.user_id])
 
       conn.release()
 
@@ -45,6 +45,21 @@ $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *`
       throw new Error(`Unable to get these trackings Error : ${(err as Error).message}`)
     }
   }
+
+// get all trackings for one user
+
+   async getAllTrackingsForOneUser(id: string): Promise<tracking[]> {
+    try {
+      const conn = await db.connect()
+      const sql = `SELECT * from tracking WHERE tracking.user_id =($1) `
+      const result = await conn.query(sql,[id])
+      conn.release()
+      return result.rows
+    } catch (err) {
+      throw new Error(`Unable to get these trackings Error : ${(err as Error).message}`)
+    }
+  }
+
 
   // udate one tracking by id
   async updateTracking(t: tracking): Promise<tracking> {
