@@ -1,0 +1,16 @@
+id,user_name,password,address,user_mail,privilege,status
+1,mark.schmidt,test,"Moltkestrae 15, Cologne, Germany",mark.schmidt,sender,active
+2,anna.mueller,test,"Hansaring 50, Cologne, Germany",anna.mueller,sender,active
+3,david.hoffmann,test,"Neusser Strae 450, Cologne, Germany",david.hoffmann,sender,active
+4,sophia.krause,test,"Hohenzollernring 88, Cologne, Germany",sophia.krause,sender,active
+5,jonas.fischer,test,"Venloer Strae 601, Cologne, Germany",jonas.fischer,sender,active
+6,emma.wagner,test,"Cologne, Germany",emma.wagner,biker,active
+7,noah.huber,test,"Cologne, Germany",noah.huber,biker,active
+8,lina.becker,test,"Cologne, Germany",lina.becker,biker,active
+9,benjamin.schneider,test,"Cologne, Germany",benjamin.schneider,biker,active
+10,lea.meyer,test,"Cologne, Germany",lea.meyer,biker,active
+11,timo.schulz,test,"Cologne, Germany",timo.schulz,biker,active
+12,emilia.berger,test,"Cologne, Germany",emilia.berger,biker,active
+13,felix.hofmann,test,"Cologne, Germany",felix.hofmann,biker,active
+14,hannah.kaiser,test,"Cologne, Germany",hannah.kaiser,biker,active
+15,niklas.pfeiffer,test,"Cologne, Germany",niklas.pfeiffer,biker,active
