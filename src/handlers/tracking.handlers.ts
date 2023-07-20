@@ -77,6 +77,36 @@ export const updateTracking = async (
   }
 };
 
+
+export const updateTrackingPickedTime = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+   
+    const track = await trackingModel.updatePicked_up_time(req.body)
+    res.json({
+      Message: ` the picked up time was updated successfully`,
+      data: { ...track }
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const updateTrackingDeliveryTime = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+   
+    const track = await trackingModel.updateDelivery_time(req.body)
+    res.json({
+      Message: ` the devliery time was updated successfully`,
+      data: { ...track }
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+
+
+
 export const deleteTracking = async (
   req: Request,
   res: Response,

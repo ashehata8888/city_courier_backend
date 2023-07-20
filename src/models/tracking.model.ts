@@ -1,5 +1,6 @@
 import tracking from '../types/tracking.type'
 import db from '../database'
+import { Tracing } from 'trace_events'
 
 class trackingModel {
   // create new tracking
@@ -73,6 +74,39 @@ $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *`
       throw new Error(`Unable to update this tracking Error : ${(err as Error).message}`)
     }
   }
+
+
+ // udate picked date and time for one track by id
+ async updatePicked_up_time(t: tracking): Promise<tracking> {
+    try {
+      const conn = await db.connect()
+      const sql = `UPDATE tracking SET 
+      picked_up_time =$1 WHERE id=$2 RETURNING *`
+      const result = await conn.query(sql, [t.picked_up_time,t.id])
+      conn.release()
+      return result.rows[0]
+    } catch (err) {
+      throw new Error(`Unable to update this picked_up_time  Error : ${(err as Error).message}`)
+    }
+  }
+
+   // udate picked date and time for one track by id
+   async updateDelivery_time (t: tracking): Promise<tracking> {
+    try {
+      const conn = await db.connect()
+      const sql = `UPDATE tracking SET 
+      delivery_time =$1 WHERE id=$2 RETURNING *`
+      const result = await conn.query(sql, [t.delivery_time,t.id])
+      conn.release()
+      return result.rows[0]
+    } catch (err) {
+      throw new Error(`Unable to update this delivery_time Error : ${(err as Error).message}`)
+    }
+  }
+
+
+  
+
   // delete one tracking by id
 
   async deleteTracking(id: string): Promise<tracking> {
