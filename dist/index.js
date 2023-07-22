@@ -36,7 +36,7 @@ const PORT = process.env.PORT || 7000;
 const app = (0, express_1.default)();
 const allowedOrigins = ["http://localhost:3000/", "https://ahmed-shehata-city-courier-shipping-app.onrender.com/"];
 const options = {
-    origin: allowedOrigins,
+    origin: "*",
 };
 app.use((0, cors_1.default)(options));
 app.use(express_1.default.json());
