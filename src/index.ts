@@ -11,12 +11,12 @@ dotenv.config();
 const PORT = process.env.PORT || 7000;
 
 const app: Application = express();
-const allowedOrigins = ["http://localhost:3000/"];
+const allowedOrigins = ["http://localhost:3000/","https://ahmed-shehata-city-courier-shipping-app.onrender.com/"];
 
-// const options: cors.CorsOptions = {
-//   origin: "*",
-// };
-// app.use(cors(options));
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
+app.use(cors(options));
 
 app.use(express.json());
 
