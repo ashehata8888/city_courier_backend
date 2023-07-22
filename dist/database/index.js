@@ -6,7 +6,7 @@ const db = new pg_1.Pool({
     // ssl: { rejectUnauthorized: false }, // Remove this line if you don't need SSL for development.
 });
 // Example query
-db.query('SELECT * FROM users', (err, res) => {
+db.query('SELECT * FROM users where users.id = 1', (err, res) => {
     if (err) {
         console.error('Error executing query', err);
     }
