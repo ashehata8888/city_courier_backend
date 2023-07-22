@@ -10,7 +10,7 @@ const db = new Pool({
 });
 
 // Example query
-db.query('SELECT * FROM your_table', (err, res) => {
+db.query('SELECT * FROM users', (err, res) => {
   if (err) {
     console.error('Error executing query', err);
   } else {
