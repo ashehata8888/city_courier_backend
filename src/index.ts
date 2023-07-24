@@ -14,7 +14,8 @@ const app: Application = express();
 const allowedOrigins = ["http://localhost:3000/","https://ahmed-shehata-city-courier-shipping-app.onrender.com/"];
 
 const options: cors.CorsOptions = {
-  origin: "*",
+  origin: "allowedOrigins", 
+  // test
 };
 app.use(cors(options));
 
